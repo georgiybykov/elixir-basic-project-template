@@ -28,6 +28,10 @@ defmodule Kv do
   @impl Kv.Behaviour
   def state(name), do: GenServer.call(name, :state)
 
+  @spec put_default(GenServer.name(), Kv.Behaviour.value()) :: :ok
+  def put_default(name, value),
+    do: put(name, "default", value)
+
   @doc """
   Puts the value to the storage
   """
